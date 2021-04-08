@@ -13,6 +13,12 @@ router.get('/', function (req, res) {
   });
 });
 
+/* Possible upgrade */
+router.get('/prueba', function(req, res) {
+  //ToDo with new user
+  res.status(200).send('hola');
+});
+
 /* GET all notes from an user by user Email */
 router.get('/all/:email', function (req, res) {
   Note.find({'email':req.params.email}).sort('-publicationdate').exec(function (err, notes) {
