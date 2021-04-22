@@ -5,7 +5,7 @@ var Note = require('../models/Note.js');
 var router = express.Router();
 var db = mongoose.connection;
 
-/* GET notes listing ordered by number of votes. */
+/* GET notes listing ordered by publicationdate */
 router.get('/', function (req, res) {
   Note.find().sort('-publicationdate').exec(function(err, posts) {
     if (err) res.status(500).send(err);
@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
   });
 });
 
-/* GET notes listing ordered by publicationdate */
+/* GET notes listing ordered by number of votes */
 router.get('/votes', function (req, res) {
   Note.find().sort('-votes').exec(function(err, posts) {
     if (err) res.status(500).send(err);
