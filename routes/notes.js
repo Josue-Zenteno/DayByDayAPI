@@ -5,7 +5,7 @@ var Note = require('../models/Note.js');
 var router = express.Router();
 var db = mongoose.connection;
 
-/* GET notes listing ordered by publicationdate. */
+/* GET notes listing ordered by number of votes. */
 router.get('/', function (req, res) {
   Note.find().sort('-votes').exec(function(err, posts) { //Con esto podemos ordenar las cosas como queramos
     if (err) res.status(500).send(err);
