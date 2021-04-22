@@ -7,21 +7,15 @@ var db = mongoose.connection;
 
 /* GET notes listing ordered by publicationdate. */
 router.get('/', function (req, res) {
-  Note.find().sort('-publicationdate').exec(function(err, posts) { //Con esto podemos ordenar las cosas como queramos
+  Note.find().sort('-votes').exec(function(err, posts) { //Con esto podemos ordenar las cosas como queramos
     if (err) res.status(500).send(err);
     else res.status(200).json(posts);
   });
 });
 
-/* Possible upgrade */
-router.get('/prueba', function(req, res) {
-  //ToDo with new user
-  res.status(200).send('hola');
-});
-
 /* GET all notes from an user by user Email */
 router.get('/all/:email', function (req, res) {
-  Note.find({'email':req.params.email}).sort('-publicationdate').exec(function (err, notes) {
+  Note.find({'email':req.params.email}).sort('-votes').exec(function (err, notes) {
       if (err) res.status(500).send(err);
       else res.status(200).json(notes);
     });
